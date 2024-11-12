@@ -3,7 +3,7 @@ let currentSong = new Audio();
 let songs
 let currFolder
 async function fetchSongs(folder) {
-    let a = await fetch(`https://github.com/Moiz6019725/Spotify-Clone-JS/tree/main/songs/${folder}/`)
+    let a = await fetch(`https://github.com/Moiz6019725/Spotify-Clone-JS/${folder}/`)
     let response = await a.text()
     currFolder = folder
     let div = document.createElement("div")
