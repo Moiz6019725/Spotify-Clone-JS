@@ -1,0 +1,44 @@
+.invert {
+    filter: invert(1);
+}
+
+.flex {
+    display: flex;
+}
+.bg-grey{
+    background-color: #121212;
+}
+.margin-10px {
+    margin: 6px;
+}
+.bor-rad{
+    border-radius: 8px;
+}
+.p-1{
+    padding:10px 25px;
+}
+.p-2{
+    padding:10px 10px 5px 10px;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #898989;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.hoverEle:hover{
+    transform: scale(1.01);
+    cursor: pointer;
+}
