@@ -3,7 +3,7 @@ let currentSong = new Audio();
 let songs
 let currFolder
 async function fetchSongs(folder) {
-    let a = await fetch(`https://github.com/Moiz6019725/Spotify-Clone-JS/${folder}/`)
+    let a = await fetch(`/${folder}/`)
     let response = await a.text()
     currFolder = folder
     let div = document.createElement("div")
@@ -68,7 +68,7 @@ const playMusic = (songUrl, pause = false) => {
 }
 
 async function fetchAlbums() {
-    let a = await fetch(`https://github.com/Moiz6019725/Spotify-Clone-JS/tree/main/songs`)
+    let a = await fetch(`tree/main/songs/`)
     let response = await a.text()
     let div = document.createElement("div")
     div.innerHTML = response
