@@ -103,7 +103,7 @@ async function fetchAlbums() {
 }
 
 async function main() {
-    await fetchSongs("songs/ArijitSingh")
+    await fetchSongs("/ArijitSingh")
     playMusic(songs[0], true)
     //shows all the songs iin the playlist
     await fetchAlbums()
