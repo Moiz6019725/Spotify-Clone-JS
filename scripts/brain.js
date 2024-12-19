@@ -68,7 +68,7 @@ const playMusic = (songUrl, pause = false) => {
 }
 
 async function fetchAlbums() {
-    let a = await fetch(`/tree/main/songs/`)
+    let a = await fetch(`/songs/`)
     let response = await a.text()
     let div = document.createElement("div")
     div.innerHTML = response
@@ -103,7 +103,7 @@ async function fetchAlbums() {
 }
 
 async function main() {
-    await fetchSongs("/ArijitSingh")
+    await fetchSongs("/tree/main/ArijitSingh")
     playMusic(songs[0], true)
     //shows all the songs iin the playlist
     await fetchAlbums()
