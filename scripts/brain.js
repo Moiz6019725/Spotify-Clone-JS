@@ -5,7 +5,7 @@ let songs;
 let currFolder;
 
 async function fetchSongs(folder) {
-    let a = await fetch(`${basePath}/${folder}/`);
+    let a = await fetch(`${basePath}/songs/${folder}/`);
     let response = await a.text();
     currFolder = folder;
 
