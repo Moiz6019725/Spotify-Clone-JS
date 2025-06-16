@@ -1,10 +1,11 @@
+const basePath = "/Spotify-Clone-JS";
 let index = 0;
 let currentSong = new Audio();
 let songs;
 let currFolder;
 
 async function fetchSongs(folder) {
-    let a = await fetch(`/${folder}/`);
+    let a = await fetch(`${basePath}/${folder}/`);
     let response = await a.text();
     currFolder = folder;
 
@@ -25,14 +26,14 @@ async function fetchSongs(folder) {
     for (const song of songs) {
         songUl.innerHTML += `
             <li class="hoverEle">
-                <img class="invert" src="svg/music.svg" alt="">
+                <img class="invert" src="${basePath}/svg/music.svg" alt="">
                 <div class="Info">
                     <marquee scrollmount="1">${song.replaceAll("%20", " ")}</marquee>
                     <div>Harry</div>
                 </div>
                 <div class="playNow">
                     <span>Play now</span>
-                    <img class="invert" src="svg/pause.svg" alt="">
+                    <img class="invert" src="${basePath}/svg/pause.svg" alt="">
                 </div>
             </li>`;
     }
@@ -53,9 +54,9 @@ function convertSecondsToMinutes(seconds) {
 }
 
 const playMusic = (songUrl, pause = false) => {
-    currentSong.src = `/${currFolder}/` + songUrl;
+    currentSong.src = `${basePath}/${currFolder}/` + songUrl;
     if (!pause) {
-        play.src = "svg/play.svg";
+        play.src = `${basePath}/svg/play.svg`;
         currentSong.play();
     }
     document.querySelector(".songtime").innerHTML = "00:00/00:00";
@@ -63,7 +64,7 @@ const playMusic = (songUrl, pause = false) => {
 };
 
 async function fetchAlbums() {
-    let a = await fetch(`/songs/`);
+    let a = await fetch(`${basePath}/songs/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -75,7 +76,7 @@ async function fetchAlbums() {
         let folder = element.href.split("/").splice(-2)[0];
 
         try {
-            let res = await fetch(`songs/${folder}/info.json`);
+            let res = await fetch(`${basePath}/songs/${folder}/info.json`);
             if (!res.ok) throw new Error("info.json missing");
             let data = await res.json();
 
@@ -86,7 +87,7 @@ async function fetchAlbums() {
                             <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80L0 432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z" />
                         </svg>
                     </div>
-                    <img src="songs/${folder}/cover.jpg" alt="">
+                    <img src="${basePath}/songs/${folder}/cover.jpg" alt="">
                     <h3>${data.title}</h3>
                     <p>${data.description}</p>
                 </div>`;
@@ -95,11 +96,10 @@ async function fetchAlbums() {
         }
     }
 
-    // Move listener attachment outside loop
     document.querySelectorAll(".card").forEach(element => {
         element.addEventListener("click", async (e) => {
             songs = await fetchSongs(`songs/${e.currentTarget.dataset.folder}`);
-            play.src = "svg/pause.svg";
+            play.src = `${basePath}/svg/pause.svg`;
             playMusic(songs[0]);
         });
     });
@@ -122,10 +122,10 @@ async function main() {
     let play = document.getElementById("play");
     play.addEventListener("click", () => {
         if (currentSong.paused) {
-            play.src = "svg/play.svg";
+            play.src = `${basePath}/svg/play.svg`;
             currentSong.play();
         } else {
-            play.src = "svg/pause.svg";
+            play.src = `${basePath}/svg/pause.svg`;
             currentSong.pause();
         }
     });
