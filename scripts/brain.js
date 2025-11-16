@@ -3,7 +3,7 @@ let currentSong = new Audio();
 let songs
 let currFolder
 async function fetchSongs(folder) {
-    let a = await fetch(`http://127.0.0.1:3000/${folder}/`)
+    let a = await fetch(`https://moiz6019725.github.io/Spotify-Clone-JS/${folder}/`)
     let response = await a.text()
     currFolder = folder
     let div = document.createElement("div")
@@ -68,7 +68,7 @@ const playMusic = (songUrl, pause = false) => {
 }
 
 async function fetchAlbums() {
-    let a = await fetch(`http://127.0.0.1:3000/songs/`)
+    let a = await fetch(`https://moiz6019725.github.io/Spotify-Clone-JS/songs/`)
     let response = await a.text()
     let div = document.createElement("div")
     div.innerHTML = response
@@ -76,7 +76,7 @@ async function fetchAlbums() {
     Array.from(div.getElementsByTagName("a")).forEach(async (element) => {
         if (element.href.includes("/songs")) {
             let folder = element.href.split("/").splice(-2)[0];
-            let a = await fetch(`http://127.0.0.1:3000/songs/${folder}/info.json`)
+            let a = await fetch(`https://moiz6019725.github.io/Spotify-Clone-JS/songs/${folder}/info.json`)
             let response = await a.json()
             cardContainer.innerHTML = cardContainer.innerHTML + `<div data-folder="${response.folder}" class="card">
                         <div class="play">
@@ -173,3 +173,4 @@ async function main() {
 }
 
 main()
+
